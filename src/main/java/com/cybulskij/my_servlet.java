@@ -40,10 +40,15 @@ public class my_servlet extends HttpServlet {
             e.printStackTrace();
         }
            */
-       String lastname=req.getParameter("lastname");
-        System.out.println(req.getParameter("lastname"));
-       String firstname=req.getParameter("firstname");
-        System.out.println(req.getParameter("firstname"));
+       String lastname=req.getParameter("lastname").trim();
+       if (lastname.equals(""))  {
+           return;
+       }
+       String firstname=req.getParameter("firstname").trim();
+        if (firstname.equals(""))  {
+            return;
+        }
+
         try {
             new  UserDao().Insert(new User(lastname,firstname));
         } catch (SQLException e) {
